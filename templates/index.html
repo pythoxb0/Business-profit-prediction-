@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Predictor - Business Profit Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --secondary: #6c757d;
+            --success: #198754;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(13, 110, 253, 0.9)), url('https://images.unsplash.com/photo-1436262513933-a0b06755c784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #e1e5eb;
+        }
+        
+        .btn {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .result-box {
+            background: linear-gradient(to right, #198754, #20c997);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        footer {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-graph-up"></i> ProfitPredictor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How It Works</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Predict Your Business Profit with AI</h1>
+            <p class="lead mb-4">Our advanced machine learning algorithm helps you forecast your business profitability based on key metrics</p>
+            <a href="#prediction-form" class="btn btn-light btn-lg rounded-pill shadow-sm px-4">
+                Get Started <i class="bi bi-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">How It Works</h2>
+                <p class="lead text-muted">Our prediction process in three simple steps</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-input-cursor-text"></i>
+                        </div>
+                        <h3>Enter Details</h3>
+                        <p>Provide information about your business type, location, investment, and operational metrics.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h3>AI Analysis</h3>
+                        <p>Our machine learning model analyzes your inputs against thousands of data points.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h3>Get Prediction</h3>
+                        <p>Receive an accurate profit prediction to help guide your business decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Form Section -->
+    <section id="prediction-form" class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-sm p-4">
+                        <h3 class="card-title text-center mb-4">📈 Predict Your Business Profit</h3>
+                        <form method="POST" action="/predict">
+                            <!-- Business Type Dropdown -->
+                            <div class="mb-3">
+                                <label class="form-label">Business Type</label>
+                                <select class="form-select" name="business_type" required>
+                                    <option disabled selected>Select a business</option>
+                                    <option value="Tea Stall">Tea Stall</option>
+                                    <option value="Mobile Shop">Mobile Shop</option>
+                                    <option value="Tailoring">Tailoring</option>
+                                    <option value="Grocery Shop">Grocery Shop</option>
+                                    <option value="Beauty Parlour">Beauty Parlour</option>
+                                    <option value="Clothing Store">Clothing Store</option>
+                                    <option value="Saloon">Saloon</option>
+                                    <option value="Medical Store">Medical Store</option>
+                                    <option value="Book Store">Book Store</option>
+                                    <option value="Stationery Shop">Stationery Shop</option>
+                                    <option value="Hardware Store">Hardware Store</option>
+                                    <option value="Electronics Repair">Electronics Repair</option>
+                                    <option value="Cyber Cafe">Cyber Cafe</option>
+                                    <option value="Fast Food Stall">Fast Food Stall</option>
+                                </select>
+                            </div>
+
+                            <!-- Location Dropdown -->
+                            <div class="mb-3">
+                                <label class="form-label">Location</label>
+                                <select class="form-select" name="location" required>
+                                    <option disabled selected>Select location</option>
+                                    <option value="Urban">Urban</option>
+                                    <option value="Rural">Rural</option>
+                                    <option value="Semi-Urban">Semi-Urban</option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label">Investment (₹)</label>
+                                    <input type="number" class="form-control" name="investment" required>
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label">Employees</label>
+                                    <input type="number" class="form-control" name="employees" required>
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label">Daily Customers</label>
+                                    <input type="number" class="form-control" name="daily_customers" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Monthly Expenses (₹)</label>
+                                    <input type="number" class="form-control" name="monthly_expenses" required>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Monthly Revenue (₹)</label>
+                                    <input type="number" class="form-control" name="monthly_revenue" required>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-3 mt-3">
+                                <button type="reset" class="btn btn-outline-danger btn-lg rounded-pill shadow-sm">
+                                    <i class="bi bi-arrow-repeat"></i> Clear Form
+                                </button>
+                                <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
+                                    <i class="bi bi-calculator"></i> Predict Profit
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Result Display Area -->
+                        <div class="result-box text-center mt-4" id="result-container">
+                            <h4 id="prediction-result">Predicted Profit: ₹0.00</h4>
+                            <p class="mb-0">Based on your inputs and our AI analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center text-lg-start mt-5">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Profit Predictor</h5>
+                    <p>Predict your business success with machine learning and make data-driven decisions for growth.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Quick Links</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="/" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="/about" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="#how-it-works" class="text-white text-decoration-none">How It Works</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-envelope me-2"></i> info@profitpredictor.com</li>
+                        <li><i class="bi bi-telephone me-2"></i> +91 9876543210</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 bg-secondary">
+            © 2025 Profit Predictor | Designed by Sahil Kumar
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Simple animation for the form
+        document.addEventListener('DOMContentLoaded', function() {
+            const formElements = document.querySelectorAll('.form-control, .form-select');
+            formElements.forEach(element => {
+                element.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                element.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+            });
+            
+            // For demonstration purposes - in a real scenario, this would come from your Flask backend
+            // Simulate prediction result display
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real application, this would be handled by your Flask backend
+                // This is just for demonstration
+                const resultContainer = document.getElementById('result-container');
+                const randomProfit = (Math.random() * 100000).toFixed(2);
+                document.getElementById('prediction-result').textContent = `Predicted Profit: ₹${randomProfit}`;
+                resultContainer.style.display = 'block';
+                
+                // Scroll to result
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // In a real application, you would remove the return false and let the form submit to Flask
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
